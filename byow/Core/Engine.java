@@ -16,7 +16,6 @@ import java.util.Random;
 
 public class Engine {
     TERenderer ter = new TERenderer();
-    /* Feel free to change the width and height. */
     public static final int WIDTH = 80;
     public static final int HEIGHT = 40;
     private static final int TILE_SIZE = 16;
@@ -82,12 +81,6 @@ public class Engine {
      * @return the 2D TETile[][] representing the state of the world
      */
     public TETile[][] interactWithInputString(String input) {
-        // passed in as an argument, and return a 2D tile representation of the
-        // world that would have been drawn if the same inputs had been given
-        // to interactWithKeyboard().
-        //
-        // See proj3.byow.InputDemo for a demo of how you can make a nice clean interface
-        // that works for many different input types.
         this.source = new StringInputDevice(input);
         this.world = MapGenerator.buildEmptyMap(WIDTH, HEIGHT);
         while (source.possibleNextInput()) {
@@ -193,7 +186,7 @@ public class Engine {
     private void drawFrame(String s) {
         int midX = WIDTH / 2;
         int midY = HEIGHT / 2;
-        //TODO: Take the string and display it in the center of the screen
+
         StdDraw.clear(Color.BLACK);
         Font font = new Font("Monaco", Font.BOLD, 40);
         StdDraw.setFont(font);
@@ -284,7 +277,7 @@ public class Engine {
             }
         }
 
-        /* In the case no file has been saved yet, we return an empty string. */
+        //In the case no file has been saved yet, return an empty string.
         return "";
 
     }
@@ -297,7 +290,7 @@ public class Engine {
         Font font = new Font("Monaco", Font.BOLD, 40);
         StdDraw.setFont(font);
         StdDraw.setPenColor(Color.WHITE);
-        StdDraw.text(midX, midY * 4 /3, "BYOW: Escape The Dungeon");
+        StdDraw.text(midX, midY * 4 /3, "Game: Dungeon Escape");
         // menu options
         Font menuFont = new Font("Monaco", Font.BOLD, 30);
         StdDraw.setFont(menuFont);
