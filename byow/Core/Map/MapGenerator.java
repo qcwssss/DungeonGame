@@ -27,7 +27,6 @@ public class MapGenerator {
 
 		// sort rooms based on xPos
 		Collections.sort(roomList, (r1, r2)->(r1.getXPos() - r2.getXPos()));
-
 		WorldGraph wg = new WorldGraph(roomList);
 		this.connectRooms(wg);
 		// add avatar
@@ -63,13 +62,10 @@ public class MapGenerator {
 		this.mapGrid[keyPos.getX()][keyPos.getY()] = Tileset.KEY;
 		this.keyPos = keyPos;
 
-
-
 	}
 
 
 	ArrayList<Room> createRandomRooms(Random rand, int UPPER_LIMIT) {
-		//final int UPPER_LIMIT = 200;
 		ArrayList<Room> listOfRooms = new ArrayList<>();
 		// duplicates? overlap?
 
@@ -101,7 +97,6 @@ public class MapGenerator {
 			}
 
 			listOfRooms.add(curRoom);
-
 		}
 		return listOfRooms;
 	}
@@ -115,7 +110,6 @@ public class MapGenerator {
 				Position p1 = curRode.getRoom().getCenter();
 				Position p2 = n.getRoom().getCenter();
 
-				//breakTwoRoomWalls(curRode.getRoom(), n.getRoom());
 				buildHallWays(p1, p2);
 			}
 		}
@@ -164,7 +158,6 @@ public class MapGenerator {
 
 	}
 
-	// Possible better idea:
 	// Create and make 3 calls to drawLTiles method that takes a tile type as an argument.
 	void buildHallWays(Position p1, Position p2){
 		int p1X = p1.getX(), p2X = p2.getX();
@@ -175,7 +168,7 @@ public class MapGenerator {
 
 		out1 = new Position(p1X, p1Y + 1);
 		inner1 = new Position(p1X, p1Y - 1);
-		// works for \
+
 		if ( (p1X < p2X && p1Y > p2Y) || (p1X > p2X && p1Y < p2Y)) {
 			inner2 = new Position(p2X - 1, p2Y);
 			out2 = new Position(p2X + 1, p2Y);
