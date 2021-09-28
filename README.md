@@ -1,42 +1,65 @@
 # Dungeon Escape
-A rouge-like dungeon game 
+A rouge-like dungeon game which will randomly generate a dungeon map when a new game start.
+//image
 
  
 ## Description
-A Google Map-like web application based on UCB CS61B assginments.
+Dungeon Escape is a rouge-like game implemented with Model-View-Controller designing pattern in Java. The View of the game developed based on a tile engine which can generate all kinds of tiles according to the grid given.
+
 This map app has several features:
-  - 1. support autocomplete system in the query box by implementing Trie data structure. 
-  - 2. a location-search function to find the nearest vertices based on the user input using KD-Tree data structures.
-  - 3. a turn-by-turn navigation function that draw a closest route using A* search algorithm and generated a sequence of navigation instructions .
+  - 1. Player can interact with the avatar player through keyboard, and get helpful information when the cursor points to tiles.
+  - 2. The game is visualized with a GUI using StdDraw library with a TO-DO bar displaying instructions.
+  - 3. Supported real-time saving and loading of the game status.
+
 
 
 ## Classes and Data Structures
-### RasterAPIHandler
-This class provides `static` methods that allow processing requests from the web browser for map images. These images will be rastered into one large image to be displayed to the user.
-
-This class does not have any instance variables.
-
-### Point
-Represents a point on the map.
+### MapGenerator
+This class provides constructor that is able to generate a random dungeon map along with `AVATAR` which the player controls, `LOCKED_DOOR` and `KEY` in initial position. This class is the core of the randomness of the game.
 
 * Instance Variables
-  -  `x` - the x-axis (or equivalent) coordinate of a point.
-  -  `y` - the y-axis (or equivalent) coordinate of a point.
-  
-### AugmentedStreetMapGraph
-An augmented graph that is more powerful than a standard StreetMapGraph. Specifically, it supports the following additional operations such as finding a node in the graph whose associated `(lon, lat)` coordinates are closest to some given coordinates.
+  -  `mapGrid` - a two dimensional grid stores all tile info the dungeon map.
+  -  `avatarPos` - the position of the initial avatar tile.
+  -  `lockedRoomPos` - the position of the locked room tile.
+  -  `keyPos` - the position of the key tile.  
+
+
+### Position
+Represents a tile position of the dungeon map.
 
 * Instance Variables
-  - `HashMap<Point, Node> nodePointMap` - a map keeping track what graph Node is associated with a certain Point on the map.
-  - `KDTree pointSet` - a k-dimensional tree data structure stores all the points associated with the reachable `Nodes` in this graph.
+  -  `xPos` - the x-axis coordinate of a tile.
+  -  `yPos` - the y-axis coordinate of a tile.
+
+### Room
+Represents a rectangular room enclosed by wall tiles.
+
+* Instance Variables
+  -  `width` - the width of the room.
+  -  `height` - the height of the room.  
+  -  `lowerLeft` - the position of the lower left point of the room.  
+  -  `height` - the center position of the room.  
+
+### WorldGraph
+A world graph is the key part of connecting random generated rooms with hallways to make the map have various route from one room to any other rooms. This graph stores all room information in the same map and how they are connected.
+
+* Instance Variables
+  -  `rNodeMap` - a HashMap stores all room instances with a given id.
+  -  `neighbors` - a HashMap stores all of the neighbor rooms of each single room id.
+
 
 ## Algorithms
-### AugmentedStreetMapGraph
-- `closest`
-  - The `closest` method takes in map coordinates, `(lon, lat)`, and returns the `id` of the graph `Node`, whose associated map `Point`, is closest to the given coordinates. We pass the given coordinates into our `KDTree`’s `nearest` method to get the nearest `Point`. We then use the `nodePoint` map to find the graph `Node` associated with the returned `Point`.
+
+### MapGenerator
+
+### WorldGraph
+- `connectNeighbors`
+  - The `connectNeighbors` method takes in a room id and a distance, then scan all the room instances within the scope and set them as neighbors of the given room id. The distance of two rooms are measured by `estimateDistance` method, which calculate the distance according to the two centers. It compares the range with the estimated distance to determine whether to set the two rooms as neighbors.
+  Since I want to make the map neither too dense or sparse, so I set the range argument to a moderate value.
+
 
 ## Acknowledgements
-Adapted from Project2 of UCB CS61B-Data Structures course, taught by Josh Hug.
+Adapted from Project3: BYOW of UCB CS61B-Data Structures course, taught by Josh Hug.
 
 My solutions for other projects, labs and homeworks of this course can be found at [CS61B_20Fall_Assignments](https://github.com/qcwssss/CS61B_20Fall). 
 
