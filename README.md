@@ -51,11 +51,20 @@ A world graph is the key part of connecting random generated rooms with hallways
 ## Algorithms
 
 ### MapGenerator
+The idea of generating random dungeon maps are composed of two phases. First, create numbers of random rooms and then connect them with hallways, which are implemented by the two methods below.
+- `createRandomRooms`
+  - The `createRandomRooms` method is used to generate random rooms using `Random` instances. It runs a limit times of iteration, each time it will create a room instance randomly if `isOverLap` method doesn't dectect overlaping with existing room objects.
+- `connectRooms`
+  - The `connectRooms` method takes in a `WorldGraph` instance and build hall ways accoding to instance variable `neighbors`. For two rooms which are neighbors, method `buildHallWays` will draw hallways according to the `center` position.
 
 ### WorldGraph
 - `connectNeighbors`
   - The `connectNeighbors` method takes in a room id and a distance, then scan all the room instances within the scope and set them as neighbors of the given room id. The distance of two rooms are measured by `estimateDistance` method, which calculate the distance according to the two centers. It compares the range with the estimated distance to determine whether to set the two rooms as neighbors.
   Since I want to make the map neither too dense or sparse, so I set the range argument to a moderate value.
+
+
+## Persistence
+The Dungeon Escape game support real-time saving and loading using `savedString` instance variables in the controller class `Engine`.
 
 
 ## Acknowledgements
