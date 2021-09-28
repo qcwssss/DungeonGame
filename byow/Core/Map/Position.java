@@ -2,7 +2,7 @@ package byow.Core.Map;
 
 import java.io.Serializable;
 
-public class Position implements Serializable {
+public class Position {
 
 	private int xPos;
 	private int yPos;
