@@ -1,6 +1,9 @@
 # Dungeon Escape
 A rouge-like dungeon game which will randomly generate a dungeon map when a new game start.
 //image
+<img width="956" alt="dungeon3" src="https://user-images.githubusercontent.com/83999326/135181305-c1c196c6-d937-4539-a9c0-ad066ac9f985.png">
+<img width="956" alt="dungeon" src="https://user-images.githubusercontent.com/83999326/135181306-9b0ab4e8-c5a8-42b7-bfb7-c840a8452486.png">
+<img width="956" alt="dungeon2" src="https://user-images.githubusercontent.com/83999326/135181308-83ac494e-df66-445d-872b-b554b44eee67.png">
 
  
 ## Description
@@ -47,6 +50,9 @@ A world graph is the key part of connecting random generated rooms with hallways
   -  `rNodeMap` - a HashMap stores all room instances with a given id.
   -  `neighbors` - a HashMap stores all of the neighbor rooms of each single room id.
 
+## Engine
+Controller of the game, enables interactivity of avatar character through keyboard input from players.
+Implemented helper UI and ending message using StdDraw libaray.
 
 ## Algorithms
 
