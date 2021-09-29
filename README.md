@@ -1,6 +1,6 @@
 # Dungeon Escape
 A rouge-like dungeon game which will randomly generate a dungeon map when a new game start.
-Below are screenshots I captured.
+  - Below are screenshots I captured from the game.
 
 <img width="956" alt="dungeon3" src="https://user-images.githubusercontent.com/83999326/135181305-c1c196c6-d937-4539-a9c0-ad066ac9f985.png">
 <img width="956" alt="dungeon" src="https://user-images.githubusercontent.com/83999326/135181306-9b0ab4e8-c5a8-42b7-bfb7-c840a8452486.png">
